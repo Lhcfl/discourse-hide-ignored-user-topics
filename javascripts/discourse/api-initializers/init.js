@@ -4,8 +4,11 @@ export default apiInitializer("1.8.0", (api) => {
   if (user == null) return;
   api.registerValueTransformer(
     "topic-list-item-class",
-    ({ value, context }) => {
-      if (user.ignored_users.includes(context.topic.creator.username)) {
+    ({ value, context: { topic } }) => {
+      if (
+        topic?.creator &&
+        user.ignored_users.includes(topic.creator.username)
+      ) {
         value.push("hidden");
       }
       return value;
