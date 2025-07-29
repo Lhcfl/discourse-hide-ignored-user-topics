@@ -5,7 +5,7 @@ export default apiInitializer("1.8.0", (api) => {
   api.registerValueTransformer(
     "topic-list-item-class",
     ({ value, context }) => {
-      if (user.ignored_users.includes(context.topic.creator.username)) {
+      if (user.ignored_users?.includes(context.topic.creator.username)) {
         value.push("hidden");
       }
       return value;
